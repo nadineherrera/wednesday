@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wednesday</title>
+  <style>
+    body {
+      background: #ffffff;
+    }
+    h1 {
+      background: #FEDD1F;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      padding: 15px;
+    }
+    h2 {
+      background: #53B451;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: left;
+      border: 1px solid #4b7eb4;
+      padding: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #4b7eb4;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐞 My Tuesday Task List 🐞</h1>
+
+  <!-- Each checkbox has a unique ID -->
+  <h2><input type="checkbox" id="task1"> Dream Journal</h2>
+  <h2><input type="checkbox" id="task2"> Brush Teeth</h2>
+  <h2><input type="checkbox" id="task3"> Take Medication</h2>
+  <h2><input type="checkbox" id="task4"> Shower</h2>
+  <h2><input type="checkbox" id="task5"> 10 Minute Stretch</h2>
+  <h2><input type="checkbox" id="task6"> Eat Breakfast</h2>
+  <h2><input type="checkbox" id="task7"> 5 Hour Work Day at Apple</h2>
+  <h2><input type="checkbox" id="task8"> 30 Minute Walk</h2>
+  <h2><input type="checkbox" id="task9"> Eat Lunch</h2>
+   <h2><input type="checkbox" id="task7"> 5 Hour Work Day at Apple</h2>
+  <h2><input type="checkbox" id="task10"> Eat Dinner</h2>
+  <h2><input type="checkbox" id="task11"> 15 Minute House Clean Up</h2>
+  <h2><input type="checkbox" id="task12"> Learn Spanish</h2>
+  <h2><input type="checkbox" id="task13"> Review Email Accounts</h2>
+  <h2><input type="checkbox" id="task13"> Review Social Media</h2>
+  <h2><input type="checkbox" id="task14"> Strength Train</h2>
+  <h2><input type="checkbox" id="task15"> Shower</h2>
+  <h2><input type="checkbox" id="task16"> Stretch</h2>
+  <h2><input type="checkbox" id="task17"> Read a Chapter of a Book</h2>
+  <h2><input type="checkbox" id="task18"> Journal</h2>
+  <h2><input type="checkbox" id="task19"> Drink a Gallon of Water</h2>
+
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const today = new Date().toLocaleDateString(); // Format: "MM/DD/YYYY"
+    const savedDate = localStorage.getItem('taskDate');
+
+    // Reset if the stored date is not today
+    if (savedDate !== today) {
+      localStorage.clear(); // clear previous checkboxes
+      localStorage.setItem('taskDate', today); // store today's date
+    }
+
+    checkboxes.forEach(checkbox => {
+      const id = checkbox.id;
+      const saved = localStorage.getItem(id);
+
+      // Load saved state if available
+      if (saved === 'true') {
+        checkbox.checked = true;
+      }
+
+      // Save new state on change
+      checkbox.addEventListener('change', () => {
+        localStorage.setItem(id, checkbox.checked);
+        localStorage.setItem('taskDate', today);
+      });
+    });
+  </script>
+</body>
+</html>
